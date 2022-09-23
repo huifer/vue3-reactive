@@ -1,26 +1,45 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <p>{{ a.old_data }}</p>
+    <button @click="click">渲染</button>
+    <p>{{ a.new_data }}</p>
+  </div>
 </template>
 
+<script setup>
+import {reactive} from "vue";
+
+var a = reactive({
+  old_data: 1,
+
+})
+
+// eslint-disable-next-line no-unused-vars
+function click() {
+  a = reactive({
+    new_data: 2,
+    old_data: 2
+  });
+
+  console.log(a);
+}
+
+
+// eslint-disable-next-line no-unused-vars
+function click2() {
+  a.new_data = 2;
+  a.old_data = 2;
+  console.log(a);
+}
+
+
+</script>
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
